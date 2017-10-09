@@ -26,8 +26,9 @@ class ChistesHandler(ContentHandler):
         if name == 'chiste':
             # De esta manera tomamos los valores de los atributos
             self.calificacion = attrs.get('calificacion', "")
+            print (self.calificacion)
         elif name == 'pregunta':
-            print("hola")
+            #print("hola")
             self.inPregunta = True
         elif name == 'respuesta':
             self.inRespuesta = True
@@ -37,9 +38,11 @@ class ChistesHandler(ContentHandler):
         Método que se llama al cerrar una etiqueta
         """
         if name == 'pregunta':
+            print ("Pregunta: " + self.pregunta)
             self.pregunta = ""
             self.inPregunta = False
         if name == 'respuesta':
+            print ("Respuesta: " + self.respuesta)
             self.respuesta = ""
             self.inRespuesta = False
 
