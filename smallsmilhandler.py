@@ -29,10 +29,12 @@ class SmallSMILHandler(ContentHandler):
 
     def startElement(self,name, attrs):
 
-        for clave in eiquetas
+        for clave in etiquetas
+            for atributo in clave.atributos
 
-            if name == atributo
-                atributo
+                if name == atributo
+                    self.calificacion = attrs.get('calificacion', "")
+                    print (self.calificacion)
 
 
 if __name__ == "__main__":
