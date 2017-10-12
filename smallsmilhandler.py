@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
+from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
 
@@ -22,12 +22,12 @@ etiquetas = {
 class SmallSMILHandler(ContentHandler):
     """docstring for SmallSMILHandler."""
 
-    def __init__(self, arg):
-        self.encontradas = []
-        self.arg = arg
-    def get_tags(self):
+    def __init__(self):
+        self.encontradas = [""]
 
-        print (encontradas)
+    def get_tags(self):
+        print("Lista de etiquetas y atributos encontrados:")
+        print (self.encontradas)
 
     def startElement(self,name, attrs):
         if name not in etiquetas.keys():
@@ -42,16 +42,16 @@ class SmallSMILHandler(ContentHandler):
             #etiqueta_para_lista["caca"] = 4
             etiqueta_para_lista["atributos"][atributo] = attrs.get(atributo,"")
 
-        encontradas.append = etiqueta_para_lista
+        self.encontradas.append(etiqueta_para_lista)
 
 
 if __name__ == "__main__":
     """
     Programa principal
     """
-
-    print ("Etiquetas:" + etiquetas)
+    print (etiquetas)
     parser = make_parser()
-    cHandler = ChistesHandler()
+    cHandler = SmallSMILHandler()
     parser.setContentHandler(cHandler)
     parser.parse(open('karaoke.smil'))
+    cHandler.get_tags()
