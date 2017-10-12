@@ -6,6 +6,11 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import smallsmilhandler
 
+def mostrar_valores(lista):
+    for elemento in lista:
+        for atributo in elemento["atributos"]:
+            print(elemento["etiqueta"] + "\t" + atributo + "\t" + elemento["atributos"][atributo])
+
 if __name__ == '__main__':
 
     parser = make_parser()
@@ -17,4 +22,4 @@ if __name__ == '__main__':
 
     parser.parse(open(sys.argv[1]))
     lista =cHandler.get_tags()
-    print(lista)
+    mostrar_valores(lista)
