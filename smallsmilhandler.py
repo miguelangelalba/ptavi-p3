@@ -29,9 +29,13 @@ class SmallSMILHandler(ContentHandler):
         pass
 
     def startElement(self,name, attrs):
-
         if name not in etiquetas.keys():
             return
+
+        etiqueta_para_lista = {
+            "etiqueta": name,
+            "atributos": {}
+        }
 
         for atributo in etiquetas[name]:
 
