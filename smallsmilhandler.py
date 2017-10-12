@@ -4,19 +4,12 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
 
-rootlayout = ["width", "height", "background-color"]
-region = ["id", "top", "bottom", "left", "right"]
-img = ["src", "region", "begin", "dur"]
-audio = ["src", "begin", "dur"]
-textstream = ["src", "region"]
-
-
 etiquetas = {
-    "root-layout": rootlayout,
-    "region": region,
-    "img": img,
-    "audio": audio,
-    "textstream": textstream
+    "root-layout": ["width", "height", "background-color"],
+    "region": ["id", "top", "bottom", "left", "right"],
+    "img": ["src", "region", "begin", "dur"],
+    "audio": ["src", "begin", "dur"],
+    "textstream": ["src", "region"]
 }
 
 class SmallSMILHandler(ContentHandler):
@@ -49,7 +42,6 @@ if __name__ == "__main__":
     """
     Programa principal
     """
-    print (etiquetas)
     parser = make_parser()
     cHandler = SmallSMILHandler()
     parser.setContentHandler(cHandler)
