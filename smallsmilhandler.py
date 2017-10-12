@@ -26,7 +26,8 @@ class SmallSMILHandler(ContentHandler):
         self.encontradas = []
         self.arg = arg
     def get_tags(self):
-        pass
+
+        print (encontradas)
 
     def startElement(self,name, attrs):
         if name not in etiquetas.keys():
@@ -38,21 +39,19 @@ class SmallSMILHandler(ContentHandler):
         }
 
         for atributo in etiquetas[name]:
+            #etiqueta_para_lista["caca"] = 4
+            etiqueta_para_lista["atributos"][atributo] = attrs.get(atributo,"")
 
-            if attrs == atributo:
-
-
-
-        for clave in etiquetas:
-            for atributo in clave.atributos:
-
-                if name == atributo:
-                    self.calificacion = attrs.get('calificacion', "")
-                    print (self.calificacion)
+        encontradas.append = etiqueta_para_lista
 
 
 if __name__ == "__main__":
     """
     Programa principal
     """
-    print (etiquetas)
+
+    print ("Etiquetas:" + etiquetas)
+    parser = make_parser()
+    cHandler = ChistesHandler()
+    parser.setContentHandler(cHandler)
+    parser.parse(open('karaoke.smil'))
