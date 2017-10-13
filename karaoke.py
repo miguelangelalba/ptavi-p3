@@ -10,9 +10,11 @@ def mostrar_valores(lista):
     for elemento in lista:
         atr_a_imprimir = ""
         for atributo in elemento["atributos"]:
-            atr_a_imprimir = atr_a_imprimir + "\t" + atributo + "\t" + elemento["atributos"][atributo]
-
-        print(elemento["etiqueta"] + atr_a_imprimir)
+            if elemento["atributos"][atributo] != "":
+                atr_a_imprimir = atr_a_imprimir + "\t" + atributo + "=" + \
+                elemento["atributos"][atributo]
+        if elemento["atributos"][atributo] != "":
+            print(elemento["etiqueta"] + atr_a_imprimir)
 
 if __name__ == '__main__':
 
