@@ -20,8 +20,8 @@ def mostrar_valores(lista):
 def to_json(fichero,lista):
     nombre_fich = fichero.split(".")[0] + ".json"
     with open(nombre_fich,"w") as fich_json:
-        json.dumps(lista)
-    #print("json",data_string)
+        json.dump(lista,fich_json, sort_keys=True,
+                indent=4, separators=(' ', ': '))
 
 if __name__ == '__main__':
 
@@ -33,5 +33,5 @@ if __name__ == '__main__':
     fichero = sys.argv[1]
     parser.parse(open(fichero))
     lista = cHandler.get_tags()
+    to_json(fichero,lista)
     mostrar_valores(lista)
-    #to_json(fichero,lista)
