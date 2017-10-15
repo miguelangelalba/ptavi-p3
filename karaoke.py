@@ -18,17 +18,19 @@ class KaraokeLocal(SmallSMILHandler):
         self.lista = cHandler.get_tags()
 
     def __str__(self):
-        #Creo que no tengo que imprimir y lo que tengo que hacer es guardar todo
-        #en un str
+        a_imprimir = ""
         for elemento in self.lista:
             atr_a_imprimir = ""
             for atributo in elemento["atributos"]:
                 if elemento["atributos"][atributo] != "":
                     atr_a_imprimir = atr_a_imprimir + "\t" + atributo + "=" + \
                     elemento["atributos"][atributo]
-            print(elemento["etiqueta"] + atr_a_imprimir)
+            a_imprimir += elemento["etiqueta"] + atr_a_imprimir + "\n"
 
-    def to_json(self,fichero,namejson):
+        return a_imprimir
+            #print(elemento["etiqueta"] + atr_a_imprimir)
+
+    def to_json(self,fichero,namejson=""):
         if namejson == "":
             namejson = fichero.split(".")[0] + ".json"
         with open(namejson,"w") as fich_json:
@@ -83,9 +85,9 @@ if __name__ == '__main__':
         sys.exit("Usage:python3 karaoke.py file.smil.")
     fichero = sys.argv[1]
     karaoke = KaraokeLocal(fichero)
-    #imprimir
+    print (karaoke.__str__())
     karaoke.to_json(fichero)
-    karaoke.do_local()
-    karaoke.to_json(fichero,"local.json")
+    #karaoke.do_local()
+    #karaoke.to_json(fichero,"local.json")
     #mostrar_valores(lista)
     #dwn_to_local(lista)
