@@ -12,6 +12,7 @@ etiquetas = {
     "textstream": ["src", "region"]
 }
 
+
 class SmallSMILHandler(ContentHandler):
     """docstring for SmallSMILHandler."""
 
@@ -23,7 +24,7 @@ class SmallSMILHandler(ContentHandler):
         #print("Lista de etiquetas y atributos encontrados:")
         #print (self.encontradas)
 
-    def startElement(self,name, attrs):
+    def startElement(self, name, attrs):
         if name not in etiquetas.keys():
             return
 
@@ -33,8 +34,8 @@ class SmallSMILHandler(ContentHandler):
         }
 
         for atributo in etiquetas[name]:
-            #etiqueta_para_lista["caca"] = 4
-            etiqueta_para_lista["atributos"][atributo] = attrs.get(atributo,"")
+            etiqueta_para_lista["atributos"][atributo] = \
+                attrs.get(atributo, "")
 
         self.encontradas.append(etiqueta_para_lista)
 
@@ -48,4 +49,4 @@ if __name__ == "__main__":
     parser.setContentHandler(cHandler)
     parser.parse(open('karaoke.smil'))
     lista = cHandler.get_tags()
-    print (lista)
+    #print (lista)
