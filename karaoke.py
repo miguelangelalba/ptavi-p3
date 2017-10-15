@@ -29,13 +29,15 @@ class KaraokeLocal(SmallSMILHandler):
             a_imprimir += elemento["etiqueta"] + atr_a_imprimir + "\n"
 
         return a_imprimir
-            #print(elemento["etiqueta"] + atr_a_imprimir)
 
     def to_json(self, fichero, namejson=""):
         if namejson == "":
             namejson = fichero.split(".")[0] + ".json"
         with open(namejson, "w") as fich_json:
-            json.dump(self.lista, fich_json, sort_keys=True,
+            json.dump(
+                self.lista,
+                fich_json,
+                sort_keys=True,
                 indent=4, separators=(' ', ': '))
 
     def do_local(self):
