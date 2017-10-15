@@ -48,36 +48,6 @@ class KaraokeLocal(SmallSMILHandler):
                     urllib.request.urlretrieve(url,filename)
 
 
-
-
-def mostrar_valores(lista):
-    for elemento in lista:
-        atr_a_imprimir = ""
-        for atributo in elemento["atributos"]:
-            if elemento["atributos"][atributo] != "":
-                atr_a_imprimir = atr_a_imprimir + "\t" + atributo + "=" + \
-                elemento["atributos"][atributo]
-        #if elemento["atributos"][atributo] != "":
-        print(elemento["etiqueta"] + atr_a_imprimir)
-
-def to_json(fichero,lista):
-    nombre_fich = fichero.split(".")[0] + ".json"
-    with open(nombre_fich,"w") as fich_json:
-        json.dump(lista,fich_json, sort_keys=True,
-                indent=4, separators=(' ', ': '))
-
-#def cahange_localizacion(fichero):
-
-def dwn_to_local(lista):
-    for elemento in lista:
-        if "src" in elemento["atributos"].keys():
-            if "http://" in  elemento["atributos"]["src"]:
-                url = elemento["atributos"]["src"]
-                filename = url[url.rfind("/") + 1:]
-                print ("descargando")
-                print(url)
-                urllib.request.urlretrieve(url,filename)
-
 if __name__ == '__main__':
 
 
@@ -87,7 +57,7 @@ if __name__ == '__main__':
     karaoke = KaraokeLocal(fichero)
     print (karaoke.__str__())
     karaoke.to_json(fichero)
-    #karaoke.do_local()
-    #karaoke.to_json(fichero,"local.json")
+    karaoke.do_local()
+    karaoke.to_json(fichero,"local.json")
     #mostrar_valores(lista)
     #dwn_to_local(lista)
