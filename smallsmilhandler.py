@@ -21,8 +21,6 @@ class SmallSMILHandler(ContentHandler):
 
     def get_tags(self):
         return self.encontradas
-        #print("Lista de etiquetas y atributos encontrados:")
-        #print (self.encontradas)
 
     def startElement(self, name, attrs):
         if name not in etiquetas.keys():
@@ -49,4 +47,3 @@ if __name__ == "__main__":
     parser.setContentHandler(cHandler)
     parser.parse(open('karaoke.smil'))
     lista = cHandler.get_tags()
-    #print (lista)
