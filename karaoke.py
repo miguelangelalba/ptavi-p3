@@ -34,11 +34,7 @@ class KaraokeLocal(SmallSMILHandler):
         if namejson == "":
             namejson = fichero.split(".")[0] + ".json"
         with open(namejson, "w") as fich_json:
-            json.dump(
-                self.lista,
-                fich_json,
-                sort_keys=True,
-                indent=4, separators=(' ', ': '))
+            json.dump(self.lista, fich_json, sort_keys=True, indent=4)
 
     def do_local(self):
         for elemento in self.lista:
