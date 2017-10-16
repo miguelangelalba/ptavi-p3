@@ -25,7 +25,7 @@ class KaraokeLocal(SmallSMILHandler):
             for atributo in elemento["atributos"]:
                 if elemento["atributos"][atributo] != "":
                     atr_a_imprimir = atr_a_imprimir + "\t" + atributo + "=" + \
-                        elemento["atributos"][atributo]
+                        '"' + elemento["atributos"][atributo] + '"'
             a_imprimir += elemento["etiqueta"] + atr_a_imprimir + "\n"
 
         return a_imprimir
@@ -47,17 +47,20 @@ class KaraokeLocal(SmallSMILHandler):
                     url = elemento["atributos"]["src"]
                     filename = url[url.rfind("/") + 1:]
                     urllib.request.urlretrieve(url, filename)
+                    elemento["atributos"]["src"] = filename
 
 
 if __name__ == '__main__':
 
-    if len(sys.argv) != 2:
+    try:
+        fichero = sys.argv[1]
+        karaoke = KaraokeLocal(fichero)
+
+    except(FileNotFoundError, IndexError):
         sys.exit("Usage:python3 karaoke.py file.smil.")
-    fichero = sys.argv[1]
-    karaoke = KaraokeLocal(fichero)
-    print (karaoke.__str__())
+
+    print(karaoke.__str__())
     karaoke.to_json(fichero)
     karaoke.do_local()
     karaoke.to_json(fichero, "local.json")
-    #mostrar_valores(lista)
-    #dwn_to_local(lista)
+    print(karaoke.__str__())
